@@ -44,22 +44,34 @@ class Configuration implements Configurable {
 
     @Override
     public void assignConfigValue(String name, String value) {
-        ConfigurableValue cfgValue = new StringConfigurationValue(name, value);
-        if (this.configurationValues.contains(cfgValue)) {
+        ConfigurableValue cfgValue = null;
+        for (ConfigurableValue configurableValue : configurationValues) {
+            if(configurableValue.hasKey(name))
+                cfgValue = configurableValue;
+                break;
+        }
+        if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
             this.configurationValues.get(valueIndex).setValue(value);
         } else {
+            cfgValue = new StringConfigurationValue(name, value);
             this.configurationValues.add(cfgValue);
         }
     }
 
     @Override
     public void assignConfigValue(String name, int value) {
-        ConfigurableValue cfgValue = new IntConfigurationValue(name, value);
-        if (this.configurationValues.contains(cfgValue)) {
+        ConfigurableValue cfgValue = null;
+        for (ConfigurableValue configurableValue : configurationValues) {
+            if(configurableValue.hasKey(name))
+                cfgValue = configurableValue;
+                break;
+        }
+        if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
             this.configurationValues.get(valueIndex).setValue(value);
         } else {
+            cfgValue = new IntConfigurationValue(name, value);
             this.configurationValues.add(cfgValue);
         }
     }
