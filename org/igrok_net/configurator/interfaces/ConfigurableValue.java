@@ -1,5 +1,5 @@
 /*
- * <one line to give the program's name and a brief idea of what it does.>
+ *  IgRok-NET configuration management utility
  *  Copyright (C) 2023  Oleg Golovchenko
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,4 +44,11 @@ public interface ConfigurableValue extends Serializable {
      * @return value as string or null if underlying value is not string.
      */
     String asString();
+
+    /**
+     * Checks if this value has specified key.
+     * @param key key to check for.
+     * @return true if key exactly matches, false otherwise.
+     */
+    boolean hasKey(String key);
 }
