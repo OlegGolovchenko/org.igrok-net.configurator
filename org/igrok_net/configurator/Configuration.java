@@ -32,6 +32,8 @@ class Configuration implements Configurable {
 
     private List<ConfigurableValue> configurationValues;
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Creates new configuration instance
      */
