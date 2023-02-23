@@ -29,6 +29,8 @@ import org.igrok_net.configurator.interfaces.ConfigurableValue;
 class StringConfigurationValue implements ConfigurableValue {
     private String name;
     private String value;
+
+    private static final long serialVersionUID = 1L;
     
     /**
      * Constructs new instace with given name and value.

@@ -31,6 +31,8 @@ class IntConfigurationValue implements ConfigurableValue {
     private String name;
     private int value;
 
+    private static final long serialVersionUID = 1L;    
+
     /**
      * Constructs new instace with given name and value.
      * @param name name of configuration value
