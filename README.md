@@ -34,3 +34,7 @@ public class TestProgram {
     }
 }
 ```
+### 0.0.2
+Contains command line interface
+#### Usage
+Run jar from command line and type help to list all commands.
