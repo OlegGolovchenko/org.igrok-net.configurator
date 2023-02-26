@@ -84,4 +84,15 @@ class Configuration implements Configurable {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Configuration: [\n");
+        for(ConfigurableValue cfgValue : this.configurationValues){
+            sb.append(" - " + cfgValue.toString() + "\n");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
