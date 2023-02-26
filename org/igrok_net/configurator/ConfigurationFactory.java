@@ -34,7 +34,7 @@ public class ConfigurationFactory {
 
     protected Configurable configuration;
 
-    private ConfigurationFactory() {
+    protected ConfigurationFactory() {
         super();
         this.configuration = new Configuration();
     }
@@ -55,8 +55,8 @@ public class ConfigurationFactory {
     public static final ConfigurationFactory initFromFile(String path) {
         ConfigurationFactory factory = new ConfigurationFactory();
         try (FileInputStream fs = new FileInputStream(path);
-                ObjectInputStream oos = new ObjectInputStream(fs)) {
-            factory.configuration = (Configurable) oos.readObject();
+                ObjectInputStream ois = new ObjectInputStream(fs)) {
+            factory.configuration = (Configuration)ois.readObject();
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex.getLocalizedMessage());
             System.err.println(ex);
@@ -95,7 +95,7 @@ public class ConfigurationFactory {
      * @param configuration configuration to write.
      * @param path destination path.
      */
-    public final void save(Configurable configuration, String path) {
+    public static final void save(Configurable configuration, String path) {
         if (configuration != null) {
             try (FileOutputStream fs = new FileOutputStream(path);
                     ObjectOutputStream oos = new ObjectOutputStream(fs)) {
