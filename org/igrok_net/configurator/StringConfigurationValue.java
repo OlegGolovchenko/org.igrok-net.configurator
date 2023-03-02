@@ -24,7 +24,7 @@ import org.igrok_net.configurator.interfaces.ConfigurableValue;
 /**
  * Represents string configuration value
  * @author Oleg Golovchenko
- * @version 0.0.1
+ * @version 0.0.3
  */
 class StringConfigurationValue implements ConfigurableValue {
     private String name;
@@ -93,5 +93,10 @@ class StringConfigurationValue implements ConfigurableValue {
     @Override
     public boolean hasKey(String key) {
        return this.name.matches(key);
+    }
+
+    @Override
+    public Boolean asBoolean() {
+        return null;
     }
 }

@@ -3,5 +3,5 @@ javadoc -cp lib\*;jar\*;bin -d doc org\igrok_net\configurator\interfaces\*.java 
 
 java -jar lib\junit-platform-console-standalone-1.9.2.jar -cp lib;bin --scan-classpath
 cd bin
-jar -cvfe ..\jar\org.igrok-net.configurator_v002.jar org.igrok_net.Configurator *
+jar -cvfe ..\jar\org.igrok-net.configurator_v003.jar org.igrok_net.Configurator *
 cd ..

@@ -28,7 +28,7 @@ import org.igrok_net.configurator.interfaces.Configurable;
 /**
  * Constructs configuration from given values or from file.
  * @author Oleg Golovchenko
- * @version 0.0.1
+ * @version 0.0.3
  */
 public class ConfigurationFactory {
 
@@ -79,6 +79,15 @@ public class ConfigurationFactory {
      * @param value value.
      */
     public final void assignConfigValue(String name, int value) {
+        this.configuration.assignConfigValue(name, value);
+    }
+
+    /**
+     * Assigns boolean value.
+     * @param name key.
+     * @param value value.
+     */
+    public final void assignConfigValue(String name, Boolean value) {
         this.configuration.assignConfigValue(name, value);
     }
 
