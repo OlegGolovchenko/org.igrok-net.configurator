@@ -26,7 +26,7 @@ import org.igrok_net.configurator.interfaces.ConfigurableValue;
 /**
  * Default implementation of configuration
  * @author Oleg Golovchenko
- * @version 0.0.1
+ * @version 0.0.3
  */
 class Configuration implements Configurable {
 
@@ -94,5 +94,22 @@ class Configuration implements Configurable {
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    @Override
+    public void assignConfigValue(String name, boolean value) {
+        ConfigurableValue cfgValue = null;
+        for (ConfigurableValue configurableValue : configurationValues) {
+            if(configurableValue.hasKey(name))
+                cfgValue = configurableValue;
+                break;
+        }
+        if (cfgValue != null) {
+            int valueIndex = this.configurationValues.indexOf(cfgValue);
+            this.configurationValues.get(valueIndex).setValue(value);
+        } else {
+            cfgValue = new BooleanConfigurationValue(name, value);
+            this.configurationValues.add(cfgValue);
+        }
     }
 }

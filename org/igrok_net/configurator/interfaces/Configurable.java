@@ -22,7 +22,7 @@ import java.io.Serializable;
 /**
  * Represents configuration
  * @author Oleg Golovchenko
- * @version 0.0.1
+ * @version 0.0.3
  */
 public interface Configurable extends Serializable {
 
@@ -39,6 +39,13 @@ public interface Configurable extends Serializable {
      * @param value value.
      */
     void assignConfigValue(String name, int value);
+
+    /**
+     * Assigns boolean configuration value.
+     * @param name value key.
+     * @param value value.
+     */
+    void assignConfigValue(String name, boolean value);
 
     /**
      * Retrieves value for given key.

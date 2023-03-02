@@ -22,45 +22,45 @@ import java.util.Objects;
 import org.igrok_net.configurator.interfaces.ConfigurableValue;
 
 /**
- * Represents integer configuration value
+ * Represents boolean configuration value
  * @author Oleg Golovchenko
  * @version 0.0.3
  */
-class IntConfigurationValue implements ConfigurableValue {
+class BooleanConfigurationValue implements ConfigurableValue {
 
     private String name;
-    private int value;
+    private boolean value;
 
-    private static final long serialVersionUID = 1L;    
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructs new instace with given name and value.
      * @param name name of configuration value
-     * @param value 
+     * @param value
      */
-    public IntConfigurationValue(String name, int value) {
+    public BooleanConfigurationValue(String name, boolean value) {
         super();
         this.name = name;
-        this.setValue(value);
-    }
-
+        this.value = value;
+    }    
+    
     /**
      * Checks if value can be assigned to this instance.
      * @param value configuration value.
      * @return true if can be assigned, false otherwise.
      */
     private static boolean canBeAssignedFromValue(Object value) {
-        return value != null && value instanceof Integer;
+        return value != null && value instanceof Boolean;
     }
 
     @Override
     public boolean equals(Object other) {
         if (other == null)
             return false;
-        if (!(other instanceof IntConfigurationValue))
+        if (!(other instanceof BooleanConfigurationValue))
             return false;
-        IntConfigurationValue otherValue = (IntConfigurationValue) other;
-        if (!otherValue.name.matches(this.name) || otherValue.value != this.value)
+        BooleanConfigurationValue otherValue = (BooleanConfigurationValue) other;
+        if (!otherValue.name.matches(this.name) || !otherValue.value == this.value)
             return false;
         return true;
     }
@@ -78,12 +78,12 @@ class IntConfigurationValue implements ConfigurableValue {
     @Override
     public void setValue(Object value) {
         if (canBeAssignedFromValue(value))
-            this.value = (Integer) value;
+            this.value = (Boolean) value;
     }
 
     @Override
     public Integer asNumeric() {
-        return this.value;
+        return null;
     }
 
     @Override
@@ -98,6 +98,7 @@ class IntConfigurationValue implements ConfigurableValue {
 
     @Override
     public Boolean asBoolean() {
-        return null;
+        return this.value;
     }
+
 }

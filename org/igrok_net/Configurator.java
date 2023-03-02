@@ -121,6 +121,10 @@ public class Configurator {
                 int nbValue = Integer.parseInt(value);
                 cfgFactory.assignConfigValue(name, nbValue);
                 break;
+            case "bool":
+                boolean boolValue = Boolean.parseBoolean(value);
+                cfgFactory.assignConfigValue(name, boolValue);
+                break;
             default:
                 System.out.println("unknown value type");
                 break;
@@ -137,7 +141,7 @@ public class Configurator {
         System.out.println("- help : prints this message");
         System.out.println("- output : sets filepath specified after '=' sign. Syntax 'output=[filepath]'");
         System.out.println("- type : prints configuration contents");
-        System.out.println("- value : adds value of type 'text' or 'int'. Syntax 'value=[type]><[name]><[value]'");
+        System.out.println("- value : adds value of type 'text', 'bool' or 'int'. Syntax 'value=[type]><[name]><[value]'");
     }
 
     private static void saveConfig() {

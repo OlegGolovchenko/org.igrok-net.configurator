@@ -38,3 +38,5 @@ public class TestProgram {
 Contains command line interface
 #### Usage
 Run jar from command line and type help to list all commands.
+### 0.0.3
+Added boolean configuration value type
