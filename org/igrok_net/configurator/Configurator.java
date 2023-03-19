@@ -15,13 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package org.igrok_net;
+package org.igrok_net.configurator;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
-import org.igrok_net.configurator.ConfigurationFactory;
-
 import java.util.regex.Matcher;
 
 public class Configurator {
@@ -99,9 +97,9 @@ public class Configurator {
         Matcher matcher = pattern.matcher(command);
         if (matcher.matches()) {
             setOutput(command.split("=")[1]);
-        } else if(command.startsWith("value")) {
+        } else if (command.startsWith("value")) {
             addValue(command);
-        }else {
+        } else {
             System.out.println("unknown command: '" + command + "' please try again.");
         }
     }
@@ -113,17 +111,29 @@ public class Configurator {
         String type = data.split("><")[0];
         String name = data.split("><")[1];
         String value = data.split("><")[2];
-        switch(type) {
+        switch (type) {
             case "text":
-                cfgFactory.assignConfigValue(name, value);
+                if(!value.matches("reset")){
+                    cfgFactory.assignConfigValue(name, value);
+                }else{
+                    cfgFactory.resetValue(name);
+                }
                 break;
             case "int":
                 int nbValue = Integer.parseInt(value);
-                cfgFactory.assignConfigValue(name, nbValue);
+                if(!value.matches("reset")){
+                    cfgFactory.assignConfigValue(name, value);
+                }else{
+                    cfgFactory.resetValue(name);
+                }
                 break;
             case "bool":
                 boolean boolValue = Boolean.parseBoolean(value);
-                cfgFactory.assignConfigValue(name, boolValue);
+                if(!value.matches("reset")){
+                    cfgFactory.assignConfigValue(name, value);
+                }else{
+                    cfgFactory.resetValue(name);
+                }
                 break;
             default:
                 System.out.println("unknown value type");
@@ -141,17 +151,28 @@ public class Configurator {
         System.out.println("- help : prints this message");
         System.out.println("- output : sets filepath specified after '=' sign. Syntax 'output=[filepath]'");
         System.out.println("- type : prints configuration contents");
-        System.out.println("- value : adds value of type 'text', 'bool' or 'int'. Syntax 'value=[type]><[name]><[value]'");
+        System.out.println(
+                "- value : adds value of type 'text', 'bool' or 'int'. Syntax 'value=[type]><[name]><[value]'");
     }
 
     private static void saveConfig() {
-        ConfigurationFactory.save(cfgFactory.build(), filePath);
+        try {
+            ConfigurationFactory.save(cfgFactory.build(), filePath);
+        } catch (IOException ioex) {
+            System.out.println(ioex.getLocalizedMessage());
+            System.err.println(ioex);
+        }
         System.out.println("Configuration written.");
     }
 
     private static void initConfig(boolean fromFile) {
         if (fromFile) {
-            cfgFactory = ConfigurationFactory.initFromFile(filePath);
+            try {
+                cfgFactory = ConfigurationFactory.initFromFile(filePath);
+            } catch (ClassNotFoundException | IOException ex) {
+                System.out.println(ex.getLocalizedMessage());
+                System.err.println(ex);
+            }
         } else {
             cfgFactory = ConfigurationFactory.init();
         }

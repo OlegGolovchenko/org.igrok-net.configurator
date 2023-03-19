@@ -19,11 +19,13 @@ package org.igrok_net.configurator;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
 import org.igrok_net.configurator.interfaces.Configurable;
 import org.junit.Test;
 
 public class ConfiguraionFactoryTests {
-    
+
     @Test
     public void configurationShouldBeBuiltCorrectly() {
         ConfigurationFactory factory = ConfigurationFactory.init();
@@ -31,9 +33,9 @@ public class ConfiguraionFactoryTests {
     }
 
     @Test
-    public void configurationShouldBeSavedAndLoadedCorrectly() {
+    public void configurationShouldBeSavedAndLoadedCorrectly() throws IOException, ClassNotFoundException {
         ConfigurationFactory factory = ConfigurationFactory.init();
-        factory.save(factory.build(), "test.igncfg");
+        ConfigurationFactory.save(factory.build(), "test.igncfg");
         ConfigurationFactory factoryLoaded = ConfigurationFactory.initFromFile("test.igncfg");
         assertNotNull(factoryLoaded);
     }

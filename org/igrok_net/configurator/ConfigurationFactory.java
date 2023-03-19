@@ -24,9 +24,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.igrok_net.configurator.interfaces.Configurable;
+import org.igrok_net.configurator.interfaces.ConfigurableValue;
 
 /**
  * Constructs configuration from given values or from file.
+ * 
  * @author Oleg Golovchenko
  * @version 0.0.3
  */
@@ -41,6 +43,7 @@ public class ConfigurationFactory {
 
     /**
      * Creates new instance of factory.
+     * 
      * @return Configuration factory instance.
      */
     public static final ConfigurationFactory init() {
@@ -49,24 +52,30 @@ public class ConfigurationFactory {
 
     /**
      * Initializes configuration factory from file.
+     * 
      * @param path path to config file.
      * @return Configuration factory instance.
+     * @throws IOException            on file read errors.
+     * @throws ClassNotFoundException if version of serialized configuration is not
+     *                                found.
      */
-    public static final ConfigurationFactory initFromFile(String path) {
+    public static final ConfigurationFactory initFromFile(String path) throws IOException, ClassNotFoundException {
         ConfigurationFactory factory = new ConfigurationFactory();
         try (FileInputStream fs = new FileInputStream(path);
                 ObjectInputStream ois = new ObjectInputStream(fs)) {
-            factory.configuration = (Configuration)ois.readObject();
+            factory.configuration = (Configuration) ois.readObject();
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex.getLocalizedMessage());
             System.err.println(ex);
+            throw ex;
         }
         return factory;
     }
 
     /**
      * Assigns string value.
-     * @param name key.
+     * 
+     * @param name  key.
      * @param value value.
      */
     public final void assignConfigValue(String name, String value) {
@@ -75,7 +84,8 @@ public class ConfigurationFactory {
 
     /**
      * Assigns integer value.
-     * @param name key.
+     * 
+     * @param name  key.
      * @param value value.
      */
     public final void assignConfigValue(String name, int value) {
@@ -84,7 +94,8 @@ public class ConfigurationFactory {
 
     /**
      * Assigns boolean value.
-     * @param name key.
+     * 
+     * @param name  key.
      * @param value value.
      */
     public final void assignConfigValue(String name, Boolean value) {
@@ -92,7 +103,20 @@ public class ConfigurationFactory {
     }
 
     /**
+     * Resets value.
+     * 
+     * @param valueKey key.
+     */
+    public final void resetValue(String valueKey) {
+        ConfigurableValue value = this.configuration.retrieveValue(valueKey);
+        if (value != null) {
+            value.resetValue();
+        }
+    }
+
+    /**
      * Builds configuration from this factory.
+     * 
      * @return Cconfiguration.
      */
     public final Configurable build() {
@@ -101,10 +125,12 @@ public class ConfigurationFactory {
 
     /**
      * Writes configuration in file.
+     * 
      * @param configuration configuration to write.
-     * @param path destination path.
+     * @param path          destination path.
+     * @throws IOException if file could not be written.
      */
-    public static final void save(Configurable configuration, String path) {
+    public static final void save(Configurable configuration, String path) throws IOException {
         if (configuration != null) {
             try (FileOutputStream fs = new FileOutputStream(path);
                     ObjectOutputStream oos = new ObjectOutputStream(fs)) {
@@ -112,6 +138,7 @@ public class ConfigurationFactory {
             } catch (IOException ioex) {
                 System.out.println(ioex.getLocalizedMessage());
                 System.err.println(ioex);
+                throw ioex;
             }
         }
     }

@@ -23,6 +23,7 @@ import org.igrok_net.configurator.interfaces.ConfigurableValue;
 
 /**
  * Represents boolean configuration value
+ * 
  * @author Oleg Golovchenko
  * @version 0.0.3
  */
@@ -35,17 +36,19 @@ class BooleanConfigurationValue implements ConfigurableValue {
 
     /**
      * Constructs new instace with given name and value.
-     * @param name name of configuration value
+     * 
+     * @param name  name of configuration value
      * @param value
      */
     public BooleanConfigurationValue(String name, boolean value) {
         super();
         this.name = name;
         this.value = value;
-    }    
-    
+    }
+
     /**
      * Checks if value can be assigned to this instance.
+     * 
      * @param value configuration value.
      * @return true if can be assigned, false otherwise.
      */
@@ -93,12 +96,17 @@ class BooleanConfigurationValue implements ConfigurableValue {
 
     @Override
     public boolean hasKey(String key) {
-       return this.name.matches(key);
+        return this.name.matches(key);
     }
 
     @Override
     public Boolean asBoolean() {
         return this.value;
+    }
+
+    @Override
+    public void resetValue() {
+        this.value = false;
     }
 
 }

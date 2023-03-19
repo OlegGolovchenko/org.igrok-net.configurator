@@ -23,6 +23,7 @@ import org.igrok_net.configurator.interfaces.ConfigurableValue;
 
 /**
  * Represents string configuration value
+ * 
  * @author Oleg Golovchenko
  * @version 0.0.3
  */
@@ -31,11 +32,12 @@ class StringConfigurationValue implements ConfigurableValue {
     private String value;
 
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * Constructs new instace with given name and value.
-     * @param name name of configuration value
-     * @param value 
+     * 
+     * @param name  name of configuration value
+     * @param value
      */
     public StringConfigurationValue(String name, String value) {
         super();
@@ -45,6 +47,7 @@ class StringConfigurationValue implements ConfigurableValue {
 
     /**
      * Checks if value can be assigned to this instance.
+     * 
      * @param value configuration value.
      * @return true if can be assigned, false otherwise.
      */
@@ -92,11 +95,16 @@ class StringConfigurationValue implements ConfigurableValue {
 
     @Override
     public boolean hasKey(String key) {
-       return this.name.matches(key);
+        return this.name.matches(key);
     }
 
     @Override
     public Boolean asBoolean() {
         return null;
+    }
+
+    @Override
+    public void resetValue() {
+        setValue("");
     }
 }

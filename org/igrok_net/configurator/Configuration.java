@@ -25,6 +25,7 @@ import org.igrok_net.configurator.interfaces.ConfigurableValue;
 
 /**
  * Default implementation of configuration
+ * 
  * @author Oleg Golovchenko
  * @version 0.0.3
  */
@@ -46,9 +47,9 @@ class Configuration implements Configurable {
     public void assignConfigValue(String name, String value) {
         ConfigurableValue cfgValue = null;
         for (ConfigurableValue configurableValue : configurationValues) {
-            if(configurableValue.hasKey(name))
+            if (configurableValue.hasKey(name))
                 cfgValue = configurableValue;
-                break;
+            break;
         }
         if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
@@ -63,9 +64,9 @@ class Configuration implements Configurable {
     public void assignConfigValue(String name, int value) {
         ConfigurableValue cfgValue = null;
         for (ConfigurableValue configurableValue : configurationValues) {
-            if(configurableValue.hasKey(name))
+            if (configurableValue.hasKey(name))
                 cfgValue = configurableValue;
-                break;
+            break;
         }
         if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
@@ -79,7 +80,7 @@ class Configuration implements Configurable {
     @Override
     public ConfigurableValue retrieveValue(String key) {
         for (ConfigurableValue configurableValue : configurationValues) {
-            if(configurableValue.hasKey(key))
+            if (configurableValue.hasKey(key))
                 return configurableValue;
         }
         return null;
@@ -89,7 +90,7 @@ class Configuration implements Configurable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Configuration: [\n");
-        for(ConfigurableValue cfgValue : this.configurationValues){
+        for (ConfigurableValue cfgValue : this.configurationValues) {
             sb.append(" - " + cfgValue.toString() + "\n");
         }
         sb.append("]");
@@ -100,9 +101,9 @@ class Configuration implements Configurable {
     public void assignConfigValue(String name, boolean value) {
         ConfigurableValue cfgValue = null;
         for (ConfigurableValue configurableValue : configurationValues) {
-            if(configurableValue.hasKey(name))
+            if (configurableValue.hasKey(name))
                 cfgValue = configurableValue;
-                break;
+            break;
         }
         if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
@@ -111,5 +112,10 @@ class Configuration implements Configurable {
             cfgValue = new BooleanConfigurationValue(name, value);
             this.configurationValues.add(cfgValue);
         }
+    }
+
+    @Override
+    public List<ConfigurableValue> listValues() {
+        return this.configurationValues;
     }
 }
