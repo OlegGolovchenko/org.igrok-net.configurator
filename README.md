@@ -1,12 +1,12 @@
 # org.igrok-net.configurator
 ## Configuration management tool
 Used to create and manage configuration files used by Igrok-NET products.
-Can be run as console app(in the future) or used as java library
+Can be run as console app(in the future) or used as java library.
 ## Versions
 ### 0.0.1
 Contains basic functionality as library.
 #### Usage
-Here is the sample of code to use configuration
+Here is the sample of code to use configuration.
 ``` java
 import org.igrok_net.configuration.*;
 import org.igrok_net.configuration.interfaces*;
@@ -35,8 +35,12 @@ public class TestProgram {
 }
 ```
 ### 0.0.2
-Contains command line interface
+Contains command line interface.
 #### Usage
 Run jar from command line and type help to list all commands.
 ### 0.0.3
-Added boolean configuration value type
+Added boolean configuration value type.
+
+### 0.0.4
+Added gui.
+added a possibility to reset value by using magic reset value when setting on command line or by using gui.
