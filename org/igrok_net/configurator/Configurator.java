@@ -122,7 +122,7 @@ public class Configurator {
             case "int":
                 int nbValue = Integer.parseInt(value);
                 if(!value.matches("reset")){
-                    cfgFactory.assignConfigValue(name, value);
+                    cfgFactory.assignConfigValue(name, nbValue);
                 }else{
                     cfgFactory.resetValue(name);
                 }
@@ -130,7 +130,7 @@ public class Configurator {
             case "bool":
                 boolean boolValue = Boolean.parseBoolean(value);
                 if(!value.matches("reset")){
-                    cfgFactory.assignConfigValue(name, value);
+                    cfgFactory.assignConfigValue(name, boolValue);
                 }else{
                     cfgFactory.resetValue(name);
                 }
