@@ -64,9 +64,10 @@ class Configuration implements Configurable {
     public void assignConfigValue(String name, int value) {
         ConfigurableValue cfgValue = null;
         for (ConfigurableValue configurableValue : configurationValues) {
-            if (configurableValue.hasKey(name))
+            if (configurableValue.hasKey(name)) {
                 cfgValue = configurableValue;
-            break;
+                break;
+            }
         }
         if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
