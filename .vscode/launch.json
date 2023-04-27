@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Configurator",
+            "request": "launch",
+            "mainClass": "org.igrok_net.configurator.Configurator",
+            "projectName": "org.igrok-net.configurator_a8cc9d3d"
+        },
+        {
+            "type": "java",
             "name": "ConfiguratorGui",
             "request": "launch",
             "mainClass": "org.igrok_net.configurator_gui.ConfiguratorGui",

@@ -47,9 +47,10 @@ class Configuration implements Configurable {
     public void assignConfigValue(String name, String value) {
         ConfigurableValue cfgValue = null;
         for (ConfigurableValue configurableValue : configurationValues) {
-            if (configurableValue.hasKey(name))
+            if (configurableValue.hasKey(name)) {
                 cfgValue = configurableValue;
-            break;
+                break;
+            }
         }
         if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
@@ -102,9 +103,10 @@ class Configuration implements Configurable {
     public void assignConfigValue(String name, boolean value) {
         ConfigurableValue cfgValue = null;
         for (ConfigurableValue configurableValue : configurationValues) {
-            if (configurableValue.hasKey(name))
+            if (configurableValue.hasKey(name)) {
                 cfgValue = configurableValue;
-            break;
+                break;
+            }
         }
         if (cfgValue != null) {
             int valueIndex = this.configurationValues.indexOf(cfgValue);
